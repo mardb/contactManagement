@@ -4,10 +4,12 @@ Awesome Startup is  a distributed company with remote employees working all over
 
 
 ### Languages/ Technologies used:
+
 - Vanilla Javascript
 - Random User Generator API (https://randomuser.me/)
 
 ### Incorporating 
+
 - Public APIs
 - API requests
 - Asynchronously handling data (async/await) requests and display in an app.
@@ -31,3 +33,6 @@ Awesome Startup is  a distributed company with remote employees working all over
 - Detailed Address, including street name and number, state or country, and post code.
 - Birthday
 - Close modal window option 
+
+### API used:
+- Random User Generator API https://randomuser.me/
