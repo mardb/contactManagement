@@ -33,6 +33,3 @@ Awesome Startup is  a distributed company with remote employees working all over
 - Detailed Address, including street name and number, state or country, and post code.
 - Birthday
 - Close modal window option 
-
-### API used:
-- Random User Generator API https://randomuser.me/
