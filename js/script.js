@@ -30,17 +30,36 @@ const generateIcons = (data) => {
   });
 
   const generateIcons = () => {
-    const items2= data.forEach(item => {
+    const items2 = data.forEach(item => {
 
       const htmlModal = `
-    
+      <div class="modal-container">
+                <div class="modal">
+                    <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+                    <div class="modal-info-container">
+                        <img class="modal-img" src="" alt="profile picture">
+                        <h3 id="name" class="modal-name cap">name</h3>
+                        <p class="modal-text">email</p>
+                        <p class="modal-text cap">city</p>
+                        <hr>
+                        <p class="modal-text">(555) 555-5555</p>
+                        <p class="modal-text">123 Portland Ave., Portland, OR 97204</p>
+                        <p class="modal-text">Birthday: 10/21/2015</p>
+                    </div>
+                </div>
+
+                // IMPORTANT: Below is only for exceeds tasks 
+                <div class="modal-btn-container">
+                    <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
+                    <button type="button" id="modal-next" class="modal-next btn">Next</button>
+                </div>
+            </div>
       `
     }) 
   
   }
 
-
-  // body.insertAdjacentHTML('beforeend', icons)
+  // body.insertAdjacentHTML('beforeend', items2)
 };
 body.addEventListener('click', (e)=>{
  const targetClosest = e.target.closest('.card').children[1].children[0]
@@ -55,3 +74,5 @@ body.addEventListener('click', (e)=>{
 /*
  *NOTE: When adding or concatenating to the DOM, avoid doing this: element.innerHTML += 'HTML string'. That technique rewrites the entire DOM. This is problematic because any rewritten elements won't retain any event listeners that were attached to the DOM before the rewrite occurs. Use this method instead: element.insertAdjacentHTML('beforeend', 'HTML string'). That technique will allow you to add strings of HTML to the DOM without disrupting what already exists in the DOM.
  */
+// ------------------ javascript
+
