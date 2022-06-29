@@ -1,21 +1,20 @@
 const url = 'https://randomuser.me/api/?results=12';
 const body = document.querySelector('body');
-const gallery = document.querySelector('.gallery')
+const gallery = document.querySelector('.gallery');
 let people = [];
 
 fetch(url)
   .then((res) => res.json())
   .then((data) => {
-    generateIcons(data.results)
-      people = data.results
-      console.log(people)
-  })
-
+    generateIcons(data.results);
+    people = data.results;
+    console.log(people);
+  });
 
 const generateIcons = (data) => {
-  const items = data.forEach((item) => {
+  const items = data.forEach((item, index) => {
     const htmlcard = `
-  <div class="card">
+  <div class="card" data-index=${index}>
   <div class="card-img-container">
       <img class="card-img" src="${item.picture.thumbnail}" alt="profile picture">
   </div>
@@ -26,13 +25,47 @@ const generateIcons = (data) => {
   </div>
 </div>
   `;
-  gallery.insertAdjacentHTML('beforeend', htmlcard);
+
+    gallery.insertAdjacentHTML('beforeend', htmlcard);
   });
+  [...document.getElementsByClassName('card')].forEach((card) => {
+    card.addEventListener('click', (e) => {
+      console.log('event firing');
+      card.getAttribute('data-index')
+      
+      //get attribute of data index 0-11
+      //look at data in square brackets
+      //how to get full name in array of objects
+      
 
-  const generateModal = (data) => {
-    const items2 = data.forEach(item2 => {
+      // generateModal(data)
+    });
+  });
+  // addEventListener('click', (e) => {
+  // console.log('event firing');
+  //       const targetClosest = e.target.closest('.card').children[1].children[0]
+  //       console.log(targetClosest.innerHTML)
+  //       console.log('outside loop')
+  //       const peopleCard = people.forEach((person) => {
+  //        console.log(' inside loop')
+  //        console.log(person.name)
+  //        if (person.name.first === targetClosest.innerHTML){
+  //          //modal
+  //          console.log('true')
+  //          //apend
+  //         }
 
-      const htmlModal = `
+  //       })
+  //       //loop (for each )
+  //      //  for(){}
+  //       //if statement for each employee
+  // });
+};
+// const cards = document.get('.card')
+
+const generateModal = (data) => {
+  const items2 = data.forEach((item2) => {
+    const htmlModal = `
       <div class="modal-container">
                 <div class="modal">
                     <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
@@ -55,32 +88,31 @@ const generateIcons = (data) => {
                 </div>
             </div>
       `;
-      gallery.insertAdjacentHTML('beforeend', htmlModal);
-    }) 
-  
-  }
-
-  // body.insertAdjacentHTML('beforeend', items2)
+    gallery.insertAdjacentHTML('beforeend', htmlModal);
+  });
 };
-body.addEventListener('click', (e)=>{
- const targetClosest = e.target.closest('.card').children[1].children[0]
- console.log(targetClosest.innerHTML)
- console.log('outside loop')
- const peopleCard = people.forEach((person) => {
-  console.log(' inside loop')
-  if (person.name === targetClosest.innerHTML){
-    //modal
-    console.log('true')
-   }
 
- })
- //loop (for each )
-//  for(){}
- //if statement for each employee
+// body.insertAdjacentHTML('beforeend', items2)
 
-})
+// body.addEventListener('click', (e)=>{
+//  const targetClosest = e.target.closest('.card').children[1].children[0]
+//  console.log(targetClosest.innerHTML)
+//  console.log('outside loop')
+//  const peopleCard = people.forEach((person) => {
+//   console.log(' inside loop')
+//   console.log(person.name)
+//   if (person.name.first === targetClosest.innerHTML){
+//     //modal
+//     console.log('true')
+//    }
+
+//  })
+//  //loop (for each )
+// //  for(){}
+//  //if statement for each employee
+
+// })
 /*
  *NOTE: When adding or concatenating to the DOM, avoid doing this: element.innerHTML += 'HTML string'. That technique rewrites the entire DOM. This is problematic because any rewritten elements won't retain any event listeners that were attached to the DOM before the rewrite occurs. Use this method instead: element.insertAdjacentHTML('beforeend', 'HTML string'). That technique will allow you to add strings of HTML to the DOM without disrupting what already exists in the DOM.
  */
 // ------------------ javascript
-
