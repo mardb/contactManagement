@@ -29,8 +29,8 @@ const generateIcons = (data) => {
   gallery.insertAdjacentHTML('beforeend', htmlcard);
   });
 
-  const generateIcons = () => {
-    const items2 = data.forEach(item => {
+  const generateModal = (data) => {
+    const items2 = data.forEach(item2 => {
 
       const htmlModal = `
       <div class="modal-container">
@@ -54,7 +54,8 @@ const generateIcons = (data) => {
                     <button type="button" id="modal-next" class="modal-next btn">Next</button>
                 </div>
             </div>
-      `
+      `;
+      gallery.insertAdjacentHTML('beforeend', htmlModal);
     }) 
   
   }
@@ -63,13 +64,20 @@ const generateIcons = (data) => {
 };
 body.addEventListener('click', (e)=>{
  const targetClosest = e.target.closest('.card').children[1].children[0]
- console.log(targetClosest)
+ console.log(targetClosest.innerHTML)
+ console.log('outside loop')
+ const peopleCard = people.forEach((person) => {
+  console.log(' inside loop')
+  if (person.name === targetClosest.innerHTML){
+    //modal
+    console.log('true')
+   }
+
+ })
  //loop (for each )
+//  for(){}
  //if statement for each employee
- if (people.name === targetClosest.textContent){
-  //modal
-  console.log('true')
- }
+
 })
 /*
  *NOTE: When adding or concatenating to the DOM, avoid doing this: element.innerHTML += 'HTML string'. That technique rewrites the entire DOM. This is problematic because any rewritten elements won't retain any event listeners that were attached to the DOM before the rewrite occurs. Use this method instead: element.insertAdjacentHTML('beforeend', 'HTML string'). That technique will allow you to add strings of HTML to the DOM without disrupting what already exists in the DOM.
