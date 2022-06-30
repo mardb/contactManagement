@@ -86,4 +86,22 @@ const modalClose = () => {
   });
 };
 
+/**
+ * EXTRA CREDIT
+ */
+const nextButton = () => {
+  const nextBtn = document.querySelector('#modal-next');
+  const card = document.getElementsByClassName('.card');
+
+  nextBtn.addEventListener('click', (e) => {
+    console.log('next is firing');
+  });
+};
+
+const backButton = () => {
+  const backBtn = document.querySelector('#modal-prev');
+  backBtn.addEventListener('click', (e) => {
+    console.log('prev is firing');
+  });
+};
 
