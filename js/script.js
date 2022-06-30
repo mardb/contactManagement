@@ -1,4 +1,4 @@
-const url = 'https://randomuser.me/api/?results=12';
+const url = 'https://randomuser.me/api/?nat=us&results=12';
 const body = document.querySelector('body');
 const gallery = document.querySelector('.gallery');
 let people = [];
@@ -28,55 +28,31 @@ const generateIcons = (data) => {
 
     gallery.insertAdjacentHTML('beforeend', htmlcard);
   });
+
   [...document.getElementsByClassName('card')].forEach((card) => {
     card.addEventListener('click', (e) => {
-      console.log('event firing');
-      card.getAttribute('data-index')
-      
-      //get attribute of data index 0-11
-      //look at data in square brackets
-      //how to get full name in array of objects
-      
-
-      // generateModal(data)
+      let dataIndex = card.getAttribute('data-index')
+      //people[dataIndex] is an object from people array plus or index of (data-index) fron foear each index that i ppassed.
+      //generateModal is passing in the information from person with certain index and then the modal of that ppops up 
+     generateModal(people[dataIndex])
     });
   });
-  // addEventListener('click', (e) => {
-  // console.log('event firing');
-  //       const targetClosest = e.target.closest('.card').children[1].children[0]
-  //       console.log(targetClosest.innerHTML)
-  //       console.log('outside loop')
-  //       const peopleCard = people.forEach((person) => {
-  //        console.log(' inside loop')
-  //        console.log(person.name)
-  //        if (person.name.first === targetClosest.innerHTML){
-  //          //modal
-  //          console.log('true')
-  //          //apend
-  //         }
-
-  //       })
-  //       //loop (for each )
-  //      //  for(){}
-  //       //if statement for each employee
-  // });
 };
-// const cards = document.get('.card')
 
-const generateModal = (data) => {
-  const items2 = data.forEach((item2) => {
+//singel person is JUST a name, it means nothing
+const generateModal = (singlePerson) => {
     const htmlModal = `
       <div class="modal-container">
                 <div class="modal">
                     <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
                     <div class="modal-info-container">
-                        <img class="modal-img" src="" alt="profile picture">
-                        <h3 id="name" class="modal-name cap">name</h3>
-                        <p class="modal-text">email</p>
-                        <p class="modal-text cap">city</p>
+                        <img class="modal-img" src="${singlePerson.picture.thumbnail}" alt="profile picture">
+                        <h3 id="name" class="modal-name cap">${singlePerson.name.first} ${singlePerson.name.last}</h3>
+                        <p class="modal-text">${singlePerson.email}</p>
+                        <p class="modal-text cap">${singlePerson.location.city}</p>
                         <hr>
-                        <p class="modal-text">(555) 555-5555</p>
-                        <p class="modal-text">123 Portland Ave., Portland, OR 97204</p>
+                        <p class="modal-text">${singlePerson.phone}</p>
+                        <p class="modal-text">${singlePerson.phone}123 Portland Ave., Portland, OR 97204</p>
                         <p class="modal-text">Birthday: 10/21/2015</p>
                     </div>
                 </div>
@@ -89,29 +65,12 @@ const generateModal = (data) => {
             </div>
       `;
     gallery.insertAdjacentHTML('beforeend', htmlModal);
-  });
+
 };
 
-// body.insertAdjacentHTML('beforeend', items2)
+//eventlistener
 
-// body.addEventListener('click', (e)=>{
-//  const targetClosest = e.target.closest('.card').children[1].children[0]
-//  console.log(targetClosest.innerHTML)
-//  console.log('outside loop')
-//  const peopleCard = people.forEach((person) => {
-//   console.log(' inside loop')
-//   console.log(person.name)
-//   if (person.name.first === targetClosest.innerHTML){
-//     //modal
-//     console.log('true')
-//    }
 
-//  })
-//  //loop (for each )
-// //  for(){}
-//  //if statement for each employee
-
-// })
 /*
  *NOTE: When adding or concatenating to the DOM, avoid doing this: element.innerHTML += 'HTML string'. That technique rewrites the entire DOM. This is problematic because any rewritten elements won't retain any event listeners that were attached to the DOM before the rewrite occurs. Use this method instead: element.insertAdjacentHTML('beforeend', 'HTML string'). That technique will allow you to add strings of HTML to the DOM without disrupting what already exists in the DOM.
  */
