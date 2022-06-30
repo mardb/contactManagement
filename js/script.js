@@ -3,15 +3,22 @@ const body = document.querySelector('body');
 const gallery = document.querySelector('.gallery');
 
 let people = [];
-
+/**
+ * Fetches data from url with specific information and returns 12 users
+ * @param {String} url API url
+ */
 fetch(url)
   .then((res) => res.json())
   .then((data) => {
     generateIcons(data.results);
     people = data.results;
-    console.log(people);
   });
 
+   /**
+   * This function loops through api data to populate 12 users
+   * appends html with users data to document
+   * @param {String} url API url
+  */
 const generateIcons = (data) => {
   const items = data.forEach((item, index) => {
 
@@ -33,8 +40,11 @@ const generateIcons = (data) => {
 
   modalOpen();
 };
-
-//singel person is JUST a name, it means nothing
+ /**
+   * This function loops through api data to populate 12 users
+   * @param [array] data 
+   * appends html with single user data to document
+  */
 const generateModal = (singlePerson) => {
   const isoDate = singlePerson.dob.date.split('T')[0].split('-');
   const birthday = `${isoDate[1]}/${isoDate[2]}/${isoDate[0]}`;
@@ -54,30 +64,28 @@ const generateModal = (singlePerson) => {
                         <p class="modal-text">Birthday: ${birthday}</p>
                     </div>
                 </div>
-
-                // IMPORTANT: Below is only for exceeds tasks 
-                <div class="modal-btn-container">
-                    <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
-                    <button type="button" id="modal-next" class="modal-next btn">Next</button>
-                </div>
-            </div>
       `;
   gallery.insertAdjacentHTML('beforeend', htmlModal);
 
   modalClose();
 };
+ /**
+   * This function loops through each user card that was initially created
+   * When user clicks card, Modal is generated based on the info of user index that was added previously
+  */
 const modalOpen = () => {
   [...document.getElementsByClassName('card')].forEach((card) => {
     card.addEventListener('click', (e) => {
       let dataIndex = card.getAttribute('data-index');
-      //people[dataIndex] is an object from people array plus or index of (data-index) fron foear each index that i ppassed.
-      //generateModal is passing in the information from person with certain index and then the modal of that ppops up
+      
       generateModal(people[dataIndex]);
-      nextButton();
     });
   });
 };
-
+ /**
+   * This function closes modal
+   * on click, modal is removed 
+  */
 const modalClose = () => {
   const closeBtn = document.querySelector('#modal-close-btn');
   const modal = document.querySelector('.modal-container');
@@ -85,23 +93,3 @@ const modalClose = () => {
     modal.remove();
   });
 };
-
-/**
- * EXTRA CREDIT
- */
-const nextButton = () => {
-  const nextBtn = document.querySelector('#modal-next');
-  const card = document.getElementsByClassName('.card');
-
-  nextBtn.addEventListener('click', (e) => {
-    console.log('next is firing');
-  });
-};
-
-const backButton = () => {
-  const backBtn = document.querySelector('#modal-prev');
-  backBtn.addEventListener('click', (e) => {
-    console.log('prev is firing');
-  });
-};
-
