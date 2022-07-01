@@ -25,7 +25,7 @@ const generateIcons = (data) => {
     const htmlcard = `
   <div class="card" data-index=${index}>
   <div class="card-img-container">
-      <img class="card-img" src="${item.picture.thumbnail}" alt="profile picture">
+      <img class="card-img" src="${item.picture.large}" alt="profile picture">
   </div>
   <div class="card-info-container">
       <h3 id="name" class="card-name cap">${item.name.first} ${item.name.last}</h3>
@@ -54,7 +54,7 @@ const generateModal = (singlePerson) => {
                 <div class="modal">
                     <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
                     <div class="modal-info-container">
-                        <img class="modal-img" src="${singlePerson.picture.thumbnail}" alt="profile picture">
+                        <img class="modal-img" src="${singlePerson.picture.large}" alt="profile picture">
                         <h3 id="name" class="modal-name cap">${singlePerson.name.first} ${singlePerson.name.last}</h3>
                         <p class="modal-text">${singlePerson.email}</p> 
                         <p class="modal-text cap">${singlePerson.location.city}</p>
